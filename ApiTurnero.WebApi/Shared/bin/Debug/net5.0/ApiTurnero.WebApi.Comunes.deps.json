@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "ApiTurnero.WebApi.Comunes/1.0.0": {
+        "runtime": {
+          "ApiTurnero.WebApi.Comunes.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ApiTurnero.WebApi.Comunes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
