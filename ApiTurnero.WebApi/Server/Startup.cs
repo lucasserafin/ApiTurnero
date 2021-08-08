@@ -7,7 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace ApiTurnero.WebApi.Server
 {
@@ -24,9 +26,16 @@ namespace ApiTurnero.WebApi.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<dbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("Conn")));
+            services.AddDbContext<dbContext>(option =>
+            option.UseSqlServer(Configuration.GetConnectionString("Conn")));
 
-            services.AddControllersWithViews();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Turnero", Version = "v1" });
+            });
+
+            services.AddControllersWithViews().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             services.AddRazorPages();
         }
 
@@ -35,6 +44,10 @@ namespace ApiTurnero.WebApi.Server
         {
             if (env.IsDevelopment())
             {
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                    "Locacion v1"));
+
                 app.UseDeveloperExceptionPage();
                 app.UseWebAssemblyDebugging();
             }
