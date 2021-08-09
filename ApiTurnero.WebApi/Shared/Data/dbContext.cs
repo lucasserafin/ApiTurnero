@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ApiTurnero.WebApi.Comunes.Data
 {
-    public class dbContext : DbContext
+    public class dbContext : DbContext 
     {
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Turno> Turnos { get; set; }

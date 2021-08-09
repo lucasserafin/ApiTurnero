@@ -219,13 +219,13 @@
       "mscorlib.dll": "sha256-CUpudhojlkcrp2dsiJFF\/H\/WNg+uAhzoGkSWfOta\/U0=",
       "netstandard.dll": "sha256-vJpyW6cE\/+ewo5rVB5JUu9x2f8aLnqoIazac8ef5FzQ=",
       "System.Private.CoreLib.dll": "sha256-CvQTDivHJZAtRXyCbDa5f5+okJt39WRFrZSmXTMSau0=",
-      "ApiTurnero.WebApi.Comunes.dll": "sha256-uiz4liXFtXFmOQYTRTczx0QM5oyLW\/bDzBPro3pw+3w=",
-      "ApiTurnero.WebApi.Client.dll": "sha256-pqX4mzs4Hho+9trkY+KOHBwdBt8WXw0FvMzuJSL6VxY="
+      "ApiTurnero.WebApi.Comunes.dll": "sha256-LGFyYn5rPGOneHKsz\/g7ShNTQEF7aMTy4bSi2QI\/B3k=",
+      "ApiTurnero.WebApi.Client.dll": "sha256-C1z3cp7vR1S1ip90CKKAIcwbDhWnOyiUzrPrM80vRtE="
     },
     "lazyAssembly": null,
     "pdb": {
-      "ApiTurnero.WebApi.Comunes.pdb": "sha256-qba01nP4epKeWNHgNESgZCghJUQEDeQwfxo88m1dZLo=",
-      "ApiTurnero.WebApi.Client.pdb": "sha256-UR3qcVQMasQzLd0JBLIp8xesTIWR6f+ir18TxGBPcZs="
+      "ApiTurnero.WebApi.Comunes.pdb": "sha256-9MwTYQDp\/ameXDzolVe+Vv0KGe9Js5quMcmE3nKhV7M=",
+      "ApiTurnero.WebApi.Client.pdb": "sha256-+LGeOV7\/2HyAfWrZBDBhKKaa+TdyNTsuiSyynmQvUW0="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-2OdnPsDgJyoSaSlvebGMRd2MxC+4UIqparqVrQZAFDE=",
