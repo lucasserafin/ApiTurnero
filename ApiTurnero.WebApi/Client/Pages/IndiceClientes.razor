@@ -23,6 +23,7 @@
                 <td>@item.Nombre</td>
                 <td>@item.Apellido</td>
                 <td>@item.Telefono</td>
+                <td><button class="btn btn-success" @onclick="()=>Editar(item)">Editar</button></td>
             </tr>
         }
     }
@@ -32,12 +33,14 @@
 {
 
     <br />
+    <h3>Nuevo Cliente</h3>
     <br />
 
     <input placeholder="Nombre del Cliente " @bind=" nombreCliente" />
     <input placeholder="Apellido del Cliente " @bind=" apellidoCliente" />
     <input placeholder="Telefono del Cliente " @bind=" telefonoCliente" />
-    <button @onclick="AddCliente ">Add</button>
+    <button class="btn btn-success" @onclick="Agregar ">Agregar</button>
+    <button class="btn btn-info" @onclick="Cancelar ">Cancelar</button>
 }
 
 
@@ -58,7 +61,7 @@
         };
     }
 
-    private void AddCliente()
+    private void Agregar()
     {
         Cliente cliente = new();
         cliente.Nombre = nombreCliente;
@@ -69,6 +72,19 @@
         apellidoCliente = "";
         telefonoCliente = "";
         Nuevo = false;
+    }
+    private void Cancelar()
+    {
+
+        nombreCliente = "";
+        apellidoCliente = "";
+        telefonoCliente = "";
+        Nuevo = false;
+
+    }
+
+    private void Editar(Cliente clienteEditar) 
+    {
     }
 
 }

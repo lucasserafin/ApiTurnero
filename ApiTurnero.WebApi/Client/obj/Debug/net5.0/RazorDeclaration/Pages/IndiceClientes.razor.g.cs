@@ -98,7 +98,7 @@ using ApiTurnero.WebApi.Comunes.Data.Entidades;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
+#line 47 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
        
     List<Cliente> clientes = new();
     string nombreCliente = "";
@@ -116,7 +116,7 @@ using ApiTurnero.WebApi.Comunes.Data.Entidades;
         };
     }
 
-    private void AddCliente()
+    private void Agregar()
     {
         Cliente cliente = new();
         cliente.Nombre = nombreCliente;
@@ -127,6 +127,19 @@ using ApiTurnero.WebApi.Comunes.Data.Entidades;
         apellidoCliente = "";
         telefonoCliente = "";
         Nuevo = false;
+    }
+    private void Cancelar()
+    {
+
+        nombreCliente = "";
+        apellidoCliente = "";
+        telefonoCliente = "";
+        Nuevo = false;
+
+    }
+
+    private void Editar(Cliente clienteEditar) 
+    {
     }
 
 
