@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace ApiTurnero.WebApi.Client.Shared
+namespace ApiTurnero.WebApi.Client.Pages
 {
     #line hidden
     using System;
@@ -83,19 +83,56 @@ using ApiTurnero.WebApi.Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\_Imports.razor"
+#line 2 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
 using ApiTurnero.WebApi.Comunes.Data.Entidades;
 
 #line default
 #line hidden
 #nullable disable
-    public partial class MainLayout : LayoutComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/clientes")]
+    public partial class IndiceClientes : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 44 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
+       
+    List<Cliente> clientes = new();
+    string nombreCliente = "";
+    string apellidoCliente = "";
+    string telefonoCliente;
+    bool Nuevo = false;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        clientes = new()
+        {
+            new Cliente() { Nombre = "Elena", Apellido = "Gomez", Telefono = "351834260" },
+            new Cliente() { Nombre = "Maria", Apellido = "Pereyra", Telefono = "351468247" },
+        };
+    }
+
+    private void AddCliente()
+    {
+        Cliente cliente = new();
+        cliente.Nombre = nombreCliente;
+        cliente.Apellido = apellidoCliente;
+        cliente.Telefono = telefonoCliente;
+        clientes.Add(cliente);
+        nombreCliente = "";
+        apellidoCliente = "";
+        telefonoCliente = "";
+        Nuevo = false;
+    }
+
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591

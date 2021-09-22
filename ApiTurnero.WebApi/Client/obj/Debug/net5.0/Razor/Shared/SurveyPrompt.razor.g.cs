@@ -79,6 +79,13 @@ using ApiTurnero.WebApi.Client.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\_Imports.razor"
+using ApiTurnero.WebApi.Comunes.Data.Entidades;
+
+#line default
+#line hidden
+#nullable disable
     public partial class SurveyPrompt : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

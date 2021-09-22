@@ -706,3 +706,5 @@ C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Cl
 C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\bin\Debug\net5.0\wwwroot\_framework\xunit.core.dll
 C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\obj\Debug\net5.0\build-gz\+DfgJmh4.gz
 C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\obj\Debug\net5.0\build-gz\sGfvbqjP.gz
+C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\obj\Debug\net5.0\RazorDeclaration\Pages\IndiceClientes.razor.g.cs
+C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\obj\Debug\net5.0\Razor\Pages\IndiceClientes.razor.g.cs

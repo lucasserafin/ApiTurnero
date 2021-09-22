@@ -96,3 +96,8 @@ C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Se
 C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Server\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Server\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Server\obj\Debug\net5.0\ApiTurnero.WebApi.Server.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Server\obj\Debug\net5.0\ApiTurnero.WebApi.Server.RazorComponent.input.cache
+C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Server\obj\Debug\net5.0\RazorDeclaration\Pages\IndiceClientes.razor.g.cs
+C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Server\obj\Debug\net5.0\ApiTurnero.WebApi.Server.RazorComponent.output.cache
+C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Server\obj\Debug\net5.0\RazorDeclaration\ApiTurnero.WebApi.Server.dll
+C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Server\obj\Debug\net5.0\Razor\Pages\IndiceClientes.razor.g.cs

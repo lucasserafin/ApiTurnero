@@ -21,7 +21,7 @@ namespace ApiTurnero.WebApi.Comunes.Data.Entidades
         [MaxLength(15, ErrorMessage = "El campo tiene como máximo {1} caracteres.")]
         public string Apellido { get; set; }
 
-        public string Telefono { get; set; }
+        public int telefono { get; set; }
     
 
         public List <Turno> Turnos { get; set; }
