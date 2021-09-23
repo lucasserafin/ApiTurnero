@@ -1,0 +1,92 @@
+﻿@page "/clientes"
+@using ApiTurnero.WebApi.Comunes.Data.Entidades
+<h3>Clientes</h3>
+<br />
+<br />
+<button @onclick="()=>Nuevo=true">Nuevo</button>
+<br />
+<br />
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Telefono</th>
+    </tr>
+    @if (clientes.Count == 0)
+    {
+        <tr>No hay Clientes</tr>
+    }
+    else
+    {
+        @foreach (var item in clientes)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Apellido</td>
+                <td>@item.Telefono</td>
+                <td><button class="btn btn-success" @onclick="()=>Editar(item)">Editar</button></td>
+            </tr>
+        }
+    }
+
+</table>
+@if (Nuevo)
+{
+
+    <br />
+    <h3>Nuevo Cliente</h3>
+    <br />
+
+    <input placeholder="Nombre del Cliente " @bind=" nombreCliente" />
+    <input placeholder="Apellido del Cliente " @bind=" apellidoCliente" />
+    <input placeholder="Telefono del Cliente " @bind=" telefonoCliente" />
+    <button class="btn btn-success" @onclick="Agregar ">Agregar</button>
+    <button class="btn btn-info" @onclick="Cancelar ">Cancelar</button>
+}
+
+
+@code {
+    List<Cliente> clientes = new();
+    string nombreCliente = "";
+    string apellidoCliente = "";
+    string telefonoCliente;
+    bool Nuevo = false;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        clientes = new()
+        {
+            new Cliente() { Nombre = "Elena", Apellido = "Gomez", Telefono = "351834260" },
+            new Cliente() { Nombre = "Maria", Apellido = "Pereyra", Telefono = "351468247" },
+        };
+    }
+
+    private void Agregar()
+    {
+        Cliente cliente = new();
+        cliente.Nombre = nombreCliente;
+        cliente.Apellido = apellidoCliente;
+        cliente.Telefono = telefonoCliente;
+        clientes.Add(cliente);
+        nombreCliente = "";
+        apellidoCliente = "";
+        telefonoCliente = "";
+        Nuevo = false;
+    }
+    private void Cancelar()
+    {
+
+        nombreCliente = "";
+        apellidoCliente = "";
+        telefonoCliente = "";
+        Nuevo = false;
+
+    }
+
+    private void Editar(Cliente clienteEditar) 
+    {
+    }
+
+}
+
+

@@ -98,48 +98,118 @@ using ApiTurnero.WebApi.Comunes.Data.Entidades;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 47 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
+#line 77 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
        
-    List<Cliente> clientes = new();
+    List<Cliente> clientes;
     string nombreCliente = "";
     string apellidoCliente = "";
     string telefonoCliente;
     bool Nuevo = false;
+    bool editar = false;
+    bool eliminar = false;
+    Cliente editarCliente;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         clientes = new()
         {
-            new Cliente() { Nombre = "Elena", Apellido = "Gomez", Telefono = "351834260" },
-            new Cliente() { Nombre = "Maria", Apellido = "Pereyra", Telefono = "351468247" },
-        };
+                new Cliente() { Nombre = "Elena", Apellido = "Gomez", Telefono = "351834260" },
+                new Cliente() { Nombre = "Maria", Apellido = "Pereyra", Telefono = "351468247" },
+            };
     }
 
-    private void Agregar()
+    private void GrabarNuevo()
     {
         Cliente cliente = new();
         cliente.Nombre = nombreCliente;
         cliente.Apellido = apellidoCliente;
         cliente.Telefono = telefonoCliente;
         clientes.Add(cliente);
-        nombreCliente = "";
-        apellidoCliente = "";
-        telefonoCliente = "";
-        Nuevo = false;
+        Cancelar();
     }
     private void Cancelar()
     {
-
+        editarCliente = null;
         nombreCliente = "";
         apellidoCliente = "";
         telefonoCliente = "";
         Nuevo = false;
+        editar = false;
+        eliminar = false;
 
     }
 
-    private void Editar(Cliente clienteEditar) 
+    private void Editar(Cliente clienteEditar)
     {
+        
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 120 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
+         if (Nuevo || eliminar)
+        {
+            Cancelar();
+            editar = true;
+        }
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 124 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
+         
+        editar = true;
+        nombreCliente = clienteEditar.Nombre;
+        apellidoCliente = clienteEditar.Apellido;
+        telefonoCliente = clienteEditar.Telefono;
+        editarCliente = clienteEditar;
+
+
+    }
+
+    private void GrabarEditar()
+    {
+        clientes.Remove(editarCliente);
+        clientes.Add(new Cliente() { Nombre = nombreCliente, Apellido = apellidoCliente, Telefono = telefonoCliente });
+        Cancelar();
+
+    }
+    private void Eliminar(Cliente clienteEliminar)
+    {
+        
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 143 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
+         if (Nuevo || editar)
+        {
+            Cancelar();
+            eliminar = true;
+        }
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 147 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
+         
+        eliminar = true;
+        nombreCliente = clienteEliminar.Nombre;
+        apellidoCliente = clienteEliminar.Apellido;
+        telefonoCliente = clienteEliminar.Telefono;
+        editarCliente = clienteEliminar;
+
+    }
+
+    private void GrabarEliminar()
+    {
+        clientes.Remove(editarCliente);
+        Cancelar();
     }
 
 

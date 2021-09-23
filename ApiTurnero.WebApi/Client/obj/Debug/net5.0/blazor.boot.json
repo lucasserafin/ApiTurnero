@@ -220,12 +220,12 @@
       "netstandard.dll": "sha256-vJpyW6cE\/+ewo5rVB5JUu9x2f8aLnqoIazac8ef5FzQ=",
       "System.Private.CoreLib.dll": "sha256-CvQTDivHJZAtRXyCbDa5f5+okJt39WRFrZSmXTMSau0=",
       "ApiTurnero.WebApi.Comunes.dll": "sha256-n7sn3YdP+4uGlhk4peGtQrG6i7XETTFeTjGVtWu3gpQ=",
-      "ApiTurnero.WebApi.Client.dll": "sha256-JrKz6Tedb2+ulUh\/dhmc\/2iTtz6Du6jBEDt1Zgwcno4="
+      "ApiTurnero.WebApi.Client.dll": "sha256-lyaJ8KZEanJjwNgUB+jw4utdX+uVr4cBPaePOptaeUk="
     },
     "lazyAssembly": null,
     "pdb": {
       "ApiTurnero.WebApi.Comunes.pdb": "sha256-MKoxEN84ch5G6d\/tHKIDSQOWg5vMKOnm0x9h\/7A\/0Jk=",
-      "ApiTurnero.WebApi.Client.pdb": "sha256-F\/biWx1okC53eia5xDSaTRGl90A12a8EdLy1PGLXQM0="
+      "ApiTurnero.WebApi.Client.pdb": "sha256-76ENPEXQSbz3cep08YN7myx321OynT+SoCAnK4pNehM="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-2OdnPsDgJyoSaSlvebGMRd2MxC+4UIqparqVrQZAFDE=",
