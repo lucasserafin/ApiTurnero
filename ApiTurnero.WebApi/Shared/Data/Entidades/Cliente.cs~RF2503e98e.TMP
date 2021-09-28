@@ -11,7 +11,7 @@ namespace ApiTurnero.WebApi.Comunes.Data.Entidades
     [Index(nameof(Nombre), Name = "UQ_Cliente_NombreCliente", IsUnique = true)]
     public class Cliente
     {
-        public int Id { get; set; }
+        public int ClienteId { get; set; }
 
         [Required(ErrorMessage = "El Nombre es obligatorio.")]
         [MaxLength(15, ErrorMessage = "El campo tiene como máximo {1} caracteres.")]
@@ -21,7 +21,6 @@ namespace ApiTurnero.WebApi.Comunes.Data.Entidades
         [MaxLength(15, ErrorMessage = "El campo tiene como máximo {1} caracteres.")]
         public string Apellido { get; set; }
 
-        [Required(ErrorMessage = "El Telefono es obligatorio.")]
         public string Telefono { get; set; }
     
 

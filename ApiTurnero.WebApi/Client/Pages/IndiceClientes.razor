@@ -3,7 +3,7 @@
 <h3>Clientes</h3>
 <br />
 <br />
-<button @onclick="()=>Nuevo=true">Nuevo</button>
+<a class="btn btn-primary" href="clientes/crear">Nuevo</a>
 <br />
 <br />
 <table>
@@ -23,7 +23,10 @@
                 <td>@item.Nombre</td>
                 <td>@item.Apellido</td>
                 <td>@item.Telefono</td>
-                <td><button class="btn btn-success" @onclick="()=>Editar(item)">Editar</button></td>
+                <td>
+                    <a class="btn btn-success"
+                       href="clientes/editar/@item.Id/@item.Nombre/@item.Apellido/@item.Telefono ">Editar </a>
+                </td>
                 <td><button class="btn btn-warning" @onclick="()=>Eliminar(item)">Eliminarr</button></td>
 
             </tr>
@@ -31,133 +34,143 @@
     }
 
 </table>
-@if (Nuevo)
-{
-    @if (editar || eliminar)
+
+<Confirmacion @ref="confirmacion"
+              onConfirm="GrabarEliminar"
+              onCancel="Cancelar"
+              Titulo="BORRAR"
+              textCancelar="No"
+              textOk="SI">
+    <div>¿Desea eliminar el Cliente @eliminarCliente.Nombre?</div>
+</Confirmacion>
+
+
+@*     @if (Nuevo)
     {
-        Cancelar();
-        Nuevo = true;
+        @if (editar || eliminar)
+        {
+            Cancelar();
+            Nuevo = true;
+        }
+
+        <br />
+        <h3>Nuevo Cliente</h3>
+        <br />
+
+        <input placeholder="Nombre del Cliente " @bind=" nombreCliente" />
+        <input placeholder="Apellido del Cliente " @bind=" apellidoCliente" />
+        <input placeholder="Telefono del Cliente " @bind=" telefonoCliente" />
+        <button class="btn btn-success" @onclick="GrabarNuevo ">Agregar</button>
+        <button class="btn btn-info" @onclick="Cancelar ">Cancelar</button>
+        */
     }
+    @**if/* (editar)
+    {
 
-    <br />
-    <h3>Nuevo Cliente</h3>
-    <br />
+        <br />
+        <h3>Editar Cliente</h3>
+        <br />
 
-    <input placeholder="Nombre del Cliente " @bind=" nombreCliente" />
-    <input placeholder="Apellido del Cliente " @bind=" apellidoCliente" />
-    <input placeholder="Telefono del Cliente " @bind=" telefonoCliente" />
-    <button class="btn btn-success" @onclick="GrabarNuevo ">Agregar</button>
-    <button class="btn btn-info" @onclick="Cancelar ">Cancelar</button>
-}
-@if (editar)
-{
-
-    <br />
-    <h3>Editar Cliente</h3>
-    <br />
-
-    <input placeholder="Nombre del Cliente " @bind=" nombreCliente" />
-    <input placeholder="Apellido del Cliente " @bind=" apellidoCliente" />
-    <input placeholder="Telefono del Cliente " @bind=" telefonoCliente" />
-    <button class="btn btn-success" @onclick="GrabarEditar ">Grabar</button>
-    <button class="btn btn-info" @onclick="Cancelar ">Cancelar</button>
-}
-@if (eliminar)
-{
-    <br />
-    <h3>ELiminar Cliente</h3>
-    <br />
-    <input placeholder="Nombre del Cliente " @bind="nombreCliente " />
-    <input placeholder="Apellido del Cliente " @bind="apellidoCliente " />
-    <input placeholder="Telefonodel Cliente " @bind="telefonoCliente " />
-    <button class="btn btn-success" @onclick="GrabarEliminar ">Eliminar</button>
-    <button class="btn btn-info" @onclick="Cancelar ">Cancelar</button>
-}
+        <input placeholder="Nombre del Cliente " @bind=" nombreCliente" />
+        <input placeholder="Apellido del Cliente " @bind=" apellidoCliente" />
+        <input placeholder="Telefono del Cliente " @bind=" telefonoCliente" />
+        <button class="btn btn-success" @onclick="GrabarEditar ">Grabar</button>
+        <button class="btn btn-info" @onclick="Cancelar ">Cancelar</button>
+    }
+    @if (eliminar)
+    {
+        <br />
+        <h3>ELiminar Cliente</h3>
+        <br />
+        <input placeholder="Nombre del Cliente " @bind="nombreCliente " />
+        <input placeholder="Apellido del Cliente " @bind="apellidoCliente " />
+        <input placeholder="Telefonodel Cliente " @bind="telefonoCliente " />
+        <button class="btn btn-success" @onclick="GrabarEliminar ">Eliminar</button>
+        <button class="btn btn-info" @onclick="Cancelar ">Cancelar</button>
+    }*@
 
 @code {
-    List<Cliente> clientes;
+    List<ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente> clientes;
+    Confirmacion confirmacion;
     string nombreCliente = "";
     string apellidoCliente = "";
     string telefonoCliente;
-    bool Nuevo = false;
+    /*bool Nuevo = false;
     bool editar = false;
-    bool eliminar = false;
-    Cliente editarCliente;
+    bool eliminar = false;*/
+    ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente eliminarCliente;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         clientes = new()
         {
-                new Cliente() { Nombre = "Elena", Apellido = "Gomez", Telefono = "351834260" },
-                new Cliente() { Nombre = "Maria", Apellido = "Pereyra", Telefono = "351468247" },
-            };
+            new ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente() { Nombre = "Elena", Apellido = "Gomez", Telefono = "351834260" },
+            new ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente() { Nombre = "Maria", Apellido = "Pereyra", Telefono = "351468247" },
+        };
     }
 
-    private void GrabarNuevo()
-    {
-        Cliente cliente = new();
-        cliente.Nombre = nombreCliente;
-        cliente.Apellido = apellidoCliente;
-        cliente.Telefono = telefonoCliente;
-        clientes.Add(cliente);
-        Cancelar();
-    }
+
     private void Cancelar()
     {
-        editarCliente = null;
-        nombreCliente = "";
+        confirmacion.Ocultar();
+        eliminarCliente = null;
+        /*nombreCliente = "";
         apellidoCliente = "";
         telefonoCliente = "";
         Nuevo = false;
         editar = false;
-        eliminar = false;
+        eliminar = false;*/
 
     }
 
-    private void Editar(Cliente clienteEditar)
-    {
-        @if (Nuevo || eliminar)
+    @*private void Editar(ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente clienteEditar)
         {
-            Cancelar();
+            /if (Nuevo || eliminar)
+            {
+                Cancelar();
+                editar = true;
+            }
             editar = true;
+            nombreCliente = clienteEditar.Nombre;
+            apellidoCliente = clienteEditar.Apellido;
+            telefonoCliente = clienteEditar.Telefono;
+            editarCliente = clienteEditar;
+
+
         }
-        editar = true;
-        nombreCliente = clienteEditar.Nombre;
-        apellidoCliente = clienteEditar.Apellido;
-        telefonoCliente = clienteEditar.Telefono;
-        editarCliente = clienteEditar;
 
+        private void GrabarEditar()
+        {
+            clientes.Remove(editarCliente);
+            clientes.Add(new ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente() { Nombre = nombreCliente, Apellido = apellidoCliente, Telefono = telefonoCliente });
+            Cancelar();
 
-    }
-
-    private void GrabarEditar()
+        }*@
+    private void Eliminar(ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente clienteEliminar)
     {
-        clientes.Remove(editarCliente);
-        clientes.Add(new Cliente() { Nombre = nombreCliente, Apellido = apellidoCliente, Telefono = telefonoCliente });
-        Cancelar();
-
-    }
-    private void Eliminar(Cliente clienteEliminar)
-    {
-        @if (Nuevo || editar)
+        /*@if (Nuevo || editar)
         {
             Cancelar();
             eliminar = true;
         }
-        eliminar = true;
+        eliminar = true;*/
+        confirmacion.Mostrar();
         nombreCliente = clienteEliminar.Nombre;
         apellidoCliente = clienteEliminar.Apellido;
         telefonoCliente = clienteEliminar.Telefono;
-        editarCliente = clienteEliminar;
+        eliminarCliente = clienteEliminar;
 
     }
 
     private void GrabarEliminar()
     {
-        clientes.Remove(editarCliente);
+
+        clientes.Remove(eliminarCliente);
         Cancelar();
     }
+
+
 
 }
 

@@ -1,0 +1,165 @@
+﻿@page "/clientes"
+@using ApiTurnero.WebApi.Comunes.Data.Entidades
+<h3>Clientes</h3>
+<br />
+<br />
+<a class="btn btn-primary" href="clientes/crear">Nuevo</a>
+<br />
+<br />
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Telefono</th>
+    </tr>
+    @if (clientes.Count == 0)
+    {
+        <tr>No hay Clientes</tr>
+    }
+    else
+    {
+        @foreach (var item in clientes)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Apellido</td>
+                <td>@item.Telefono</td>
+                <td>
+                    <a class="btn btn-success"
+                       href="clientes/editar">Editar </a>
+                </td>
+                <td><button class="btn btn-warning" @onclick="()=>Eliminar(item)">Eliminarr</button></td>
+
+            </tr>
+        }
+    }
+
+</table>
+
+   
+      @if (Nuevo)/*
+{
+    @if (editar || eliminar)
+    {
+        Cancelar();
+        Nuevo = true;
+    }
+
+    <br />
+    <h3>Nuevo Cliente</h3>
+    <br />
+
+    <input placeholder="Nombre del Cliente " @bind=" nombreCliente" />
+    <input placeholder="Apellido del Cliente " @bind=" apellidoCliente" />
+    <input placeholder="Telefono del Cliente " @bind=" telefonoCliente" />
+    <button class="btn btn-success" @onclick="GrabarNuevo ">Agregar</button>
+    <button class="btn btn-info" @onclick="Cancelar ">Cancelar</button>
+    */
+}
+@if (editar)
+{
+
+    <br />
+    <h3>Editar Cliente</h3>
+    <br />
+
+    <input placeholder="Nombre del Cliente " @bind=" nombreCliente" />
+    <input placeholder="Apellido del Cliente " @bind=" apellidoCliente" />
+    <input placeholder="Telefono del Cliente " @bind=" telefonoCliente" />
+    <button class="btn btn-success" @onclick="GrabarEditar ">Grabar</button>
+    <button class="btn btn-info" @onclick="Cancelar ">Cancelar</button>
+}
+@if (eliminar)
+{
+    <br />
+    <h3>ELiminar Cliente</h3>
+    <br />
+    <input placeholder="Nombre del Cliente " @bind="nombreCliente " />
+    <input placeholder="Apellido del Cliente " @bind="apellidoCliente " />
+    <input placeholder="Telefonodel Cliente " @bind="telefonoCliente " />
+    <button class="btn btn-success" @onclick="GrabarEliminar ">Eliminar</button>
+    <button class="btn btn-info" @onclick="Cancelar ">Cancelar</button>
+}
+
+@code {
+    List<ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente> clientes;
+    string nombreCliente = "";
+    string apellidoCliente = "";
+    string telefonoCliente;
+    bool Nuevo = false;
+    bool editar = false;
+    bool eliminar = false;
+    ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente editarCliente;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        clientes = new()
+        {
+            new ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente() { Nombre = "Elena", Apellido = "Gomez", Telefono = "351834260" },
+            new ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente() { Nombre = "Maria", Apellido = "Pereyra", Telefono = "351468247" },
+        };
+    }
+
+
+    private void Cancelar()
+    {
+        editarCliente = null;
+        nombreCliente = "";
+        apellidoCliente = "";
+        telefonoCliente = "";
+        Nuevo = false;
+        editar = false;
+        eliminar = false;
+
+    }
+
+    private void Editar(ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente clienteEditar)
+    {
+        @if (Nuevo || eliminar)
+        {
+            Cancelar();
+            editar = true;
+        }
+        editar = true;
+        nombreCliente = clienteEditar.Nombre;
+        apellidoCliente = clienteEditar.Apellido;
+        telefonoCliente = clienteEditar.Telefono;
+        editarCliente = clienteEditar;
+
+
+    }
+
+    private void GrabarEditar()
+    {
+        clientes.Remove(editarCliente);
+        clientes.Add(new ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente() { Nombre = nombreCliente, Apellido = apellidoCliente, Telefono = telefonoCliente });
+        Cancelar();
+
+    }
+    private void Eliminar(ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente clienteEliminar)
+    {
+        @if (Nuevo || editar)
+        {
+            Cancelar();
+            eliminar = true;
+        }
+        eliminar = true;
+        nombreCliente = clienteEliminar.Nombre;
+        apellidoCliente = clienteEliminar.Apellido;
+        telefonoCliente = clienteEliminar.Telefono;
+        editarCliente = clienteEliminar;
+
+    }
+
+    private void GrabarEliminar()
+    {
+        
+        clientes.Remove(editarCliente);
+        Cancelar();
+    }
+
+    
+
+}
+
+

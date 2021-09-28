@@ -1,0 +1,34 @@
+﻿<EditForm Model=" Cliente" OnValidSubmit=" onValidSubmit">
+    <DataAnnotationsValidator />
+    <div class=" form-group">
+        <label>Nombre del cliente</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Cliente.Nombre"></InputText>
+            <ValidationMessage For="@(() => Cliente.Nombre)" />
+        </div>
+    </div>
+    <div class=" form-group">
+        <label>Apellido del cliente</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Cliente.Apellido"></InputText>
+            <ValidationMessage For="@(() => Cliente.Apellido)" />
+        </div>
+    </div>
+    <div class=" form-group">
+        <label>Telefono del cliente</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Cliente.Telefono"></InputText>
+            <ValidationMessage For="@(() => Cliente.Telefono)" />
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Guardarrr</button>
+
+    <button class="btn btn-secondary" @onclick="onCancel" type="button">Cancelarrr</button>
+
+</EditForm>
+
+@code {
+    [Parameter] public Cliente Cliente { get; set; }
+    [Parameter] public EventCallback onValidSubmit { get; set; }
+    [Parameter] public EventCallback onCancel { get; set; }
+}
