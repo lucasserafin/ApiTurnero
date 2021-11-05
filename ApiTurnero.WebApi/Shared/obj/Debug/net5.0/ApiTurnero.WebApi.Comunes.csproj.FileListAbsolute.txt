@@ -4,6 +4,7 @@ C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Sh
 C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Shared\bin\Debug\net5.0\ApiTurnero.WebApi.Comunes.dll
 C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Shared\bin\Debug\net5.0\ref\ApiTurnero.WebApi.Comunes.dll
 C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Shared\bin\Debug\net5.0\ApiTurnero.WebApi.Comunes.pdb
+C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Shared\obj\Debug\net5.0\ApiTurnero.WebApi.Comunes.csproj.AssemblyReference.cache
 C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Shared\obj\Debug\net5.0\ApiTurnero.WebApi.Comunes.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Shared\obj\Debug\net5.0\ApiTurnero.WebApi.Comunes.AssemblyInfoInputs.cache
 C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Shared\obj\Debug\net5.0\ApiTurnero.WebApi.Comunes.AssemblyInfo.cs

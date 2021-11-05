@@ -90,8 +90,15 @@ using ApiTurnero.WebApi.Client.Pages.Cliente;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
+#line 12 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\_Imports.razor"
 using ApiTurnero.WebApi.Comunes.Data.Entidades;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\_Imports.razor"
+using ApiTurnero.WebApi.Client.Servicios;
 
 #line default
 #line hidden
@@ -105,71 +112,55 @@ using ApiTurnero.WebApi.Comunes.Data.Entidades;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 92 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
+#line 52 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
        
-    List<ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente> clientes;
+    List<ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente> clientes = new List<Comunes.Data.Entidades.Cliente>();
     Confirmacion confirmacion;
-    string nombreCliente = "";
-    string apellidoCliente = "";
-    string telefonoCliente;
-    /*bool Nuevo = false;
-    bool editar = false;
-    bool eliminar = false;*/
     ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente eliminarCliente;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
-        clientes = new()
-        {
-            new ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente() { Nombre = "Elena", Apellido = "Gomez", Telefono = "351834260" },
-            new ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente() { Nombre = "Maria", Apellido = "Pereyra", Telefono = "351468247" },
-        };
+        await Leer();
+
     }
 
+    private async Task Leer()
+    {
+        var respuestaHttp = await http.Get<List<ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente>>("api/clientes");
+        if (!respuestaHttp.Error)
+        {
+            clientes = respuestaHttp.Respuesta;
+        }
+    }
 
     private void Cancelar()
     {
         confirmacion.Ocultar();
         eliminarCliente = null;
-        /*nombreCliente = "";
-        apellidoCliente = "";
-        telefonoCliente = "";
-        Nuevo = false;
-        editar = false;
-        eliminar = false;*/
+
 
     }
 
-    
 
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 149 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\IndiceClientes.razor"
-           
     private void Eliminar(ApiTurnero.WebApi.Comunes.Data.Entidades.Cliente clienteEliminar)
     {
-        /*@if (Nuevo || editar)
-        {
-            Cancelar();
-            eliminar = true;
-        }
-        eliminar = true;*/
+
         confirmacion.Mostrar();
-        nombreCliente = clienteEliminar.Nombre;
-        apellidoCliente = clienteEliminar.Apellido;
-        telefonoCliente = clienteEliminar.Telefono;
         eliminarCliente = clienteEliminar;
 
     }
 
-    private void GrabarEliminar()
+    private async Task GrabarEliminar()
     {
 
-        clientes.Remove(eliminarCliente);
+        var respuesta = await http.Delet($"api/clientes/{eliminarCliente.Id}");
+        if (respuesta.Error)
+        {
+            var body = await respuesta.GetBody();
+        }
         Cancelar();
+        await Leer();
     }
 
 
@@ -178,6 +169,7 @@ using ApiTurnero.WebApi.Comunes.Data.Entidades;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IHttpService http { get; set; }
     }
 }
 #pragma warning restore 1591

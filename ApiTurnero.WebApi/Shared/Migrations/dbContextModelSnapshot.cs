@@ -35,8 +35,9 @@ namespace ApiTurnero.WebApi.Comunes.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<int>("telefono")
-                        .HasColumnType("int");
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -69,7 +70,7 @@ namespace ApiTurnero.WebApi.Comunes.Migrations
 
                     b.HasIndex("ClienteId");
 
-                    b.HasIndex(new[] { "sucursal" }, "UQ_Turno_sucursal")
+                    b.HasIndex(new[] { "sucursal" }, "UQ_Turno_CodTurno")
                         .IsUnique()
                         .HasFilter("[sucursal] IS NOT NULL");
 

@@ -97,6 +97,13 @@ using ApiTurnero.WebApi.Comunes.Data.Entidades;
 #line hidden
 #nullable disable
 #nullable restore
+#line 13 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\_Imports.razor"
+using ApiTurnero.WebApi.Client.Servicios;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\FetchData.razor"
 using ApiTurnero.WebApi.Shared;
 

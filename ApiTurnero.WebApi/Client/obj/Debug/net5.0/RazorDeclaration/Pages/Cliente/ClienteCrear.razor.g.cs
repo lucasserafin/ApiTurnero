@@ -96,6 +96,13 @@ using ApiTurnero.WebApi.Comunes.Data.Entidades;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 13 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\_Imports.razor"
+using ApiTurnero.WebApi.Client.Servicios;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/clientes/crear")]
     public partial class ClienteCrear : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -105,15 +112,20 @@ using ApiTurnero.WebApi.Comunes.Data.Entidades;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 5 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\Cliente\ClienteCrear.razor"
+#line 7 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\Cliente\ClienteCrear.razor"
        
     private Cliente cliente = new();
+
     private async Task GrabarNuevo()
     {
-        Console.WriteLine($"Graba{cliente.Nombre}");
+        var httpRespuesta = await http.Post<Cliente>("api/clientes",cliente);
+        if (httpRespuesta.Error)
+        {
+            var body = await httpRespuesta.GetBody();
+        }
         navigationManager.NavigateTo("/clientes");
     }
-    private async Task Cancelar()
+    private void Cancelar()
     {
         navigationManager.NavigateTo("/clientes");
     }
@@ -121,6 +133,7 @@ using ApiTurnero.WebApi.Comunes.Data.Entidades;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IHttpService http { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigationManager { get; set; }
     }
 }

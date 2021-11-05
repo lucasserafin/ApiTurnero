@@ -22,29 +22,30 @@ namespace ApiTurnero.WebApi.Server.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Cliente>> Get()
+        public async Task<ActionResult<List<Cliente>>> Get()
         {
-            return context.Clientes.Include(x => x.Turnos).ToList();
+            //return await context.Clientes.Include(x => x.Turnos).ToListAsync();
+            return await context.Clientes.ToListAsync();
         }
 
         [HttpGet("{id:int}")]
-        public ActionResult<Cliente> Get(int id)
+        public async Task < ActionResult<Cliente>> Get(int id)
         {
-            var pais = context.Clientes.Where(x => x.Id == id).Include(x => x.Turnos).FirstOrDefault();
-            if (pais == null)
+            var cliente = await context.Clientes.Where(x => x.Id == id).Include(x => x.Turnos).FirstOrDefaultAsync();
+            if (cliente == null)
             {
-                return NotFound($"No existe el pais con id igual a {id}.");
+                return NotFound($"No existe el cliente con id igual a {id}.");
             }
-            return pais;
+            return cliente;
         }
 
         [HttpPost]
-        public ActionResult<Cliente> Post(Cliente cliente)
+        public async Task<ActionResult<Cliente>> Post(Cliente cliente)
         {
             try
             {
                 context.Clientes.Add(cliente);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return cliente;
             }
             catch (Exception e)
@@ -54,24 +55,26 @@ namespace ApiTurnero.WebApi.Server.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, [FromBody] Cliente cliente)
+        public async Task<ActionResult> Put(int id, [FromBody] Cliente cliente)
         {
             if (id != cliente.Id)
             {
                 return BadRequest("Datos incorrectos");
             }
 
-            var campo = context.Clientes.Where(x => x.Id == id).FirstOrDefault();
+            var campo = await context.Clientes.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (campo == null)
             {
                 return NotFound("no existe el cliente a modificar.");
             }
          
             campo.Nombre = cliente.Nombre;
+            campo.Apellido = cliente.Apellido;
+            campo.Telefono = cliente.Telefono;
             try
             {
                 context.Clientes.Update(campo);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return Ok("Los datos han sido cambiados");
             }
             catch (Exception e)
@@ -81,9 +84,9 @@ namespace ApiTurnero.WebApi.Server.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var cliente = context.Clientes.Where(x => x.Id == id).FirstOrDefault();
+            var cliente = await context.Clientes.Where(x => x.Id == id).FirstOrDefaultAsync ();
             if (cliente == null)
             {
                 return NotFound($"No existe el cliente con id igual a {id}.");
@@ -92,7 +95,7 @@ namespace ApiTurnero.WebApi.Server.Controllers
             try
             {
                 context.Clientes.Remove(cliente);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return Ok($"El país {cliente.Apellido} ha sido borrado.");
             }
             catch (Exception e)

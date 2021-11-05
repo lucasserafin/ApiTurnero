@@ -96,7 +96,14 @@ using ApiTurnero.WebApi.Comunes.Data.Entidades;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/clientes/editar/{ClienteId:int}/{nombre}/{apellido}/{telefono}")]
+#nullable restore
+#line 13 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\_Imports.razor"
+using ApiTurnero.WebApi.Client.Servicios;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/clientes/editar/{ClienteId:int}")]
     public partial class ClienteEditar : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -105,30 +112,40 @@ using ApiTurnero.WebApi.Comunes.Data.Entidades;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 7 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\Cliente\ClienteEditar.razor"
+#line 8 "C:\Users\Lucas\Desktop\programacion\programacion\ApiTurnero\ApiTurnero.WebApi\Client\Pages\Cliente\ClienteEditar.razor"
        
     private Cliente cliente;
     [Parameter] public int ClienteId { get; set; }
-    [Parameter] public string nombre { get; set; }
-    [Parameter] public string apellido { get; set; }
-    [Parameter] public string telefono { get; set; }
+
 
     protected async override Task OnInitializedAsync()
     {
-        cliente = new()
+        await MostrarPais();
+    }
+    private async Task MostrarPais()
+    {
+        var httpRespuesta = await http.Get<Cliente>($"api/clientes/{ClienteId} ");
+        if (httpRespuesta.Error)
         {
-            Id = ClienteId,
-            Nombre = nombre,
-            Apellido = apellido,
-
-        };
+            var body = await httpRespuesta.GetBody();
+        }
+        else
+        {
+            cliente = httpRespuesta.Respuesta;
+        }
     }
     private async Task GrabarModificacion()
     {
-        Console.WriteLine($"Graba modificacion{cliente.Nombre}");
+
+        var httpRespuesta = await http.Put<Cliente>($"api/clientes/{ClienteId}", cliente);
+        if (httpRespuesta.Error)
+        {
+            var body = await httpRespuesta.GetBody();
+        }
+        
         navigationManager.NavigateTo("/clientes");
     }
-    private async Task Cancelar()
+    private  void Cancelar()
     {
         navigationManager.NavigateTo("/clientes");
     }
@@ -136,6 +153,7 @@ using ApiTurnero.WebApi.Comunes.Data.Entidades;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IHttpService http { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigationManager { get; set; }
     }
 }
